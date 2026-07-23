@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useState, useRef } from 'react'
 import { emit } from '@tauri-apps/api/event'
+import { isTauri } from '@/lib/is-tauri'
 import { ThemeProviderContext, type Theme } from '@/lib/theme-context'
 import { usePreferences } from '@/services/preferences'
 
@@ -59,7 +60,9 @@ export function ThemeProvider({
       localStorage.setItem(storageKey, newTheme)
       setTheme(newTheme)
       // Notify other windows (e.g., quick pane) of theme change
-      emit('theme-changed', { theme: newTheme })
+      if (isTauri()) {
+        void emit('theme-changed', { theme: newTheme })
+      }
     },
   }
 

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { getCurrentWindow } from '@tauri-apps/api/window'
+import { isTauri } from '@/lib/is-tauri'
 import { useUIStore } from '@/store/ui-store'
 import { usePlatform } from './use-platform'
 
@@ -16,6 +17,11 @@ export function useSquareCornersEffect() {
   const setSquareCorners = useUIStore(state => state.setSquareCorners)
 
   useEffect(() => {
+    if (!isTauri()) {
+      setSquareCorners(false)
+      return
+    }
+
     // macOS always has rounded corners via windowEffects
     if (platform === 'macos') {
       setSquareCorners(false)

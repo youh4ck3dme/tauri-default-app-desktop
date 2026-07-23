@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { check } from '@tauri-apps/plugin-updater'
 import { relaunch } from '@tauri-apps/plugin-process'
+import { isTauri } from '@/lib/is-tauri'
 import { UPDATER_ENABLED } from './lib/updater-config'
 import { initializeCommandSystem } from './lib/commands'
 import { buildAppMenu, setupMenuLanguageListener } from './lib/menu'
@@ -22,6 +23,12 @@ function App() {
     logger.info('🚀 Frontend application starting up')
     initializeCommandSystem()
     logger.debug('Command system initialized')
+
+    if (!isTauri()) {
+      logger.info('Running in web preview mode (Tauri APIs disabled)')
+      void initializeLanguage(null)
+      return
+    }
 
     // Initialize language based on saved preference or system locale
     const initLanguageAndMenu = async () => {
