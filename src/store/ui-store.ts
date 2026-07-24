@@ -6,6 +6,7 @@ interface UIState {
   rightSidebarVisible: boolean
   commandPaletteOpen: boolean
   preferencesOpen: boolean
+  assistantOpen: boolean
   lastQuickPaneEntry: string | null
 
   toggleLeftSidebar: () => void
@@ -16,6 +17,8 @@ interface UIState {
   setCommandPaletteOpen: (open: boolean) => void
   togglePreferences: () => void
   setPreferencesOpen: (open: boolean) => void
+  toggleAssistant: () => void
+  setAssistantOpen: (open: boolean) => void
   setLastQuickPaneEntry: (text: string) => void
   setSquareCorners: (enabled: boolean) => void
 }
@@ -27,6 +30,7 @@ export const useUIStore = create<UIState>()(
       rightSidebarVisible: true,
       commandPaletteOpen: false,
       preferencesOpen: false,
+      assistantOpen: false,
       lastQuickPaneEntry: null,
 
       toggleLeftSidebar: () =>
@@ -76,6 +80,16 @@ export const useUIStore = create<UIState>()(
 
       setPreferencesOpen: open =>
         set({ preferencesOpen: open }, undefined, 'setPreferencesOpen'),
+
+      toggleAssistant: () =>
+        set(
+          state => ({ assistantOpen: !state.assistantOpen }),
+          undefined,
+          'toggleAssistant'
+        ),
+
+      setAssistantOpen: open =>
+        set({ assistantOpen: open }, undefined, 'setAssistantOpen'),
 
       setLastQuickPaneEntry: text =>
         set({ lastQuickPaneEntry: text }, undefined, 'setLastQuickPaneEntry'),

@@ -9,6 +9,7 @@ describe('UIStore', () => {
       rightSidebarVisible: true,
       commandPaletteOpen: false,
       preferencesOpen: false,
+      assistantOpen: false,
     })
   })
 
@@ -18,6 +19,7 @@ describe('UIStore', () => {
     expect(state.rightSidebarVisible).toBe(true)
     expect(state.commandPaletteOpen).toBe(false)
     expect(state.preferencesOpen).toBe(false)
+    expect(state.assistantOpen).toBe(false)
   })
 
   it('toggles left sidebar visibility', () => {
@@ -58,5 +60,25 @@ describe('UIStore', () => {
 
     toggleCommandPalette()
     expect(useUIStore.getState().commandPaletteOpen).toBe(false)
+  })
+
+  it('toggles assistant panel', () => {
+    const { toggleAssistant } = useUIStore.getState()
+
+    toggleAssistant()
+    expect(useUIStore.getState().assistantOpen).toBe(true)
+
+    toggleAssistant()
+    expect(useUIStore.getState().assistantOpen).toBe(false)
+  })
+
+  it('sets assistant open directly', () => {
+    const { setAssistantOpen } = useUIStore.getState()
+
+    setAssistantOpen(true)
+    expect(useUIStore.getState().assistantOpen).toBe(true)
+
+    setAssistantOpen(false)
+    expect(useUIStore.getState().assistantOpen).toBe(false)
   })
 })

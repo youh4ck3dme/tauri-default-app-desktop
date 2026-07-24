@@ -1,11 +1,14 @@
 {
   "app.name": "قالب تاوري",
+
   "mainWindow.placeholder": "KEstudio",
   "mainWindow.lastEntry": "آخر إدخال: {{entry}}",
+
   "sidebar.websupport": "Websupport",
   "sidebar.websupport.domains": "Domény",
   "sidebar.websupport.email": "Email",
   "sidebar.websupport.dns": "DNS",
+
   "menu.about": "حول {{appName}}",
   "menu.checkForUpdates": "التحقق من التحديثات...",
   "menu.preferences": "التفضيلات...",
@@ -16,12 +19,14 @@
   "menu.view": "عرض",
   "menu.toggleLeftSidebar": "تبديل الشريط الجانبي الأيسر",
   "menu.toggleRightSidebar": "تبديل الشريط الجانبي الأيمن",
+
   "preferences.title": "التفضيلات",
   "preferences.description": "تخصيص تفضيلات التطبيق الخاص بك هنا.",
   "preferences.general": "عام",
   "preferences.appearance": "المظهر",
   "preferences.advanced": "متقدم",
   "preferences.integrations": "التكاملات",
+
   "preferences.general.keyboardShortcuts": "اختصارات لوحة المفاتيح",
   "preferences.general.quickPaneShortcut": "اختصار اللوحة السريعة",
   "preferences.general.quickPaneShortcutDescription": "اختصار لوحة المفاتيح العام لتبديل اللوحة السريعة من أي تطبيق",
@@ -31,6 +36,7 @@
   "preferences.general.exampleTextPlaceholder": "أدخل نص المثال",
   "preferences.general.exampleToggle": "إعداد تبديل المثال",
   "preferences.general.exampleToggleDescription": "هذا مثال على إعداد المفتاح/التبديل (غير محفوظ)",
+
   "preferences.appearance.theme": "السمة",
   "preferences.appearance.colorTheme": "سمة اللون",
   "preferences.appearance.colorThemeDescription": "اختر سمة اللون المفضلة لديك",
@@ -41,6 +47,7 @@
   "preferences.appearance.language": "اللغة",
   "preferences.appearance.languageDescription": "اختر لغة العرض المفضلة لديك",
   "preferences.appearance.language.system": "افتراضي النظام",
+
   "preferences.advanced.title": "إعدادات متقدمة",
   "preferences.advanced.toggle": "تبديل متقدم",
   "preferences.advanced.toggleDescription": "هذا مثال على إعداد التبديل المتقدم (غير محفوظ)",
@@ -49,6 +56,7 @@
   "preferences.advanced.option1": "الخيار 1",
   "preferences.advanced.option2": "الخيار 2",
   "preferences.advanced.option3": "الخيار 3",
+
   "preferences.integrations.websupport": "Websupport",
   "preferences.integrations.websupportDescription": "بيانات اعتماد واجهة برمجة التطبيقات لخدمات Websupport. تُخزَّن بأمان في سلسلة مفاتيح نظام التشغيل.",
   "preferences.integrations.websupportIdentifier": "معرّف Websupport",
@@ -67,15 +75,18 @@
   "preferences.integrations.placeholder": "أدخل السر…",
   "preferences.integrations.showSecret": "إظهار السر",
   "preferences.integrations.hideSecret": "إخفاء السر",
+
   "common.enabled": "مفعّل",
   "common.disabled": "معطّل",
   "common.reset": "إعادة تعيين",
+
   "commands.group.navigation": "التنقل",
   "commands.group.settings": "الإعدادات",
   "commands.group.window": "النافذة",
   "commands.group.notification": "الإشعارات",
   "commands.group.debug": "التصحيح",
   "commands.group.other": "أخرى",
+
   "commands.showLeftSidebar.label": "إظهار الشريط الجانبي الأيسر",
   "commands.showLeftSidebar.description": "إظهار الشريط الجانبي الأيسر",
   "commands.hideLeftSidebar.label": "إخفاء الشريط الجانبي الأيسر",
@@ -86,6 +97,7 @@
   "commands.hideRightSidebar.description": "إخفاء الشريط الجانبي الأيمن",
   "commands.openPreferences.label": "فتح التفضيلات",
   "commands.openPreferences.description": "فتح تفضيلات التطبيق",
+
   "commands.windowClose.label": "إغلاق النافذة",
   "commands.windowClose.description": "إغلاق النافذة الحالية",
   "commands.windowMinimize.label": "تصغير النافذة",
@@ -96,23 +108,42 @@
   "commands.windowFullscreen.description": "الدخول إلى وضع ملء الشاشة",
   "commands.windowExitFullscreen.label": "الخروج من ملء الشاشة",
   "commands.windowExitFullscreen.description": "الخروج من وضع ملء الشاشة",
+
   "commands.testToast.label": "اختبار إشعار التنبيه",
   "commands.testToast.description": "إظهار إشعار تنبيه اختباري",
+
   "commandPalette.title": "لوحة الأوامر",
   "commandPalette.placeholder": "اكتب أمراً أو ابحث...",
   "commandPalette.noResults": "لم يتم العثور على نتائج.",
+
   "titlebar.default": "تطبيق تاوري",
   "titlebar.showLeftSidebar": "إظهار الشريط الجانبي الأيسر",
   "titlebar.hideLeftSidebar": "إخفاء الشريط الجانبي الأيسر",
   "titlebar.showRightSidebar": "إظهار الشريط الجانبي الأيمن",
   "titlebar.hideRightSidebar": "إخفاء الشريط الجانبي الأيمن",
   "titlebar.settings": "الإعدادات",
+
+  "assistant.openAriaLabel": "فتح مساعد Mistral",
+  "assistant.title": "مساعد Mistral",
+  "assistant.subtitle": "سجلات DNS وصناديق بريد Websupport",
+  "assistant.emptyState": "اطلب مني إدارة سجلات DNS أو النطاقات أو صناديق البريد في Websupport.",
+  "assistant.placeholder": "صف ما تحتاجه…",
+  "assistant.inputAriaLabel": "رسالة إلى المساعد",
+  "assistant.sendAriaLabel": "إرسال الرسالة",
+  "assistant.confirm": "تأكيد",
+  "assistant.cancel": "إلغاء",
+  "assistant.pendingHint": "يتطلب هذا التغيير تأكيدك قبل التنفيذ.",
+  "assistant.thinking": "جارٍ التفكير…",
+  "assistant.emptyReply": "(لا يوجد رد)",
+
   "toast.success.preferencesSaved": "تم حفظ التفضيلات",
   "toast.success.secretSaved": "تم حفظ السر",
   "toast.success.testToast": "إشعار اختباري",
   "toast.success.testToastDescription": "هذا إشعار اختباري",
   "toast.error.generic": "حدث خطأ ما",
   "toast.error.secretSaveFailed": "فشل حفظ السر",
+  "toast.error.assistantSendFailed": "تعذّر الوصول إلى المساعد",
+  "toast.error.assistantConfirmFailed": "فشل تأكيد الإجراء",
   "toast.error.shortcutFailed": "فشل تسجيل الاختصار",
   "toast.error.shortcutRestoreFailed": "فشل استعادة الاختصار السابق",
   "toast.error.shortcutRestoreDescription": "قد يكون الاختصار غير متزامن. يرجى إعادة تشغيل التطبيق أو المحاولة مرة أخرى.",

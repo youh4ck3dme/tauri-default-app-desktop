@@ -9,6 +9,8 @@ import { RightSideBar } from './RightSideBar'
 import { MainWindowContent } from './MainWindowContent'
 import { CommandPalette } from '@/components/command-palette/CommandPalette'
 import { PreferencesDialog } from '@/components/preferences/PreferencesDialog'
+import { AssistantBubble } from '@/components/assistant/AssistantBubble'
+import { AssistantPanel } from '@/components/assistant/AssistantPanel'
 import { Toaster } from 'sonner'
 import { useTheme } from '@/hooks/use-theme'
 import { useUIStore } from '@/store/ui-store'
@@ -78,6 +80,8 @@ export function MainWindow() {
       {/* Global UI Components (hidden until triggered) */}
       <CommandPalette />
       <PreferencesDialog />
+      <AssistantBubble />
+      <AssistantPanel />
       <Toaster
         position="bottom-right"
         theme={
