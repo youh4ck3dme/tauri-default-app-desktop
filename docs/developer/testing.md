@@ -2,6 +2,25 @@
 
 Testing patterns for Rust and TypeScript, with focus on Tauri-specific mocking.
 
+## Test Categories
+
+Every test in this codebase falls into one of five categories. Knowing the
+category tells you where the file lives, what (if anything) to mock, and
+which helper to reach for.
+
+| Category          | What it covers                                                | Location                           | Mocking                                           | Example                             |
+| ----------------- | ------------------------------------------------------------- | ---------------------------------- | ------------------------------------------------- | ----------------------------------- |
+| **1. Pure logic** | Functions with no React, no Tauri, no I/O — pure input→output | Colocated `*.test.ts`              | None                                              | `lib/platform-strings.test.ts`      |
+| **2. Store**      | Zustand global UI state                                       | Colocated `*.test.ts`              | None (reset via `setState` in `beforeEach`)       | `store/ui-store.test.ts`            |
+| **3. Hook**       | React hooks (`use*`), with or without browser APIs            | Colocated `*.test.ts`              | Browser APIs (`matchMedia`) or Tauri plugins only | `hooks/use-platform.test.ts`        |
+| **4. Data layer** | Tauri command wrappers, TanStack Query hooks                  | Colocated `*.test.ts`/`*.test.tsx` | `@/lib/tauri-bindings` (see `src/test/setup.ts`)  | `services/preferences.test.tsx`     |
+| **5. Component**  | Rendered UI behavior (user-visible output, not internals)     | Colocated `*.test.tsx`             | Providers via `src/test/test-utils.tsx`           | `components/ErrorBoundary.test.tsx` |
+
+Decision rule: **start at category 1 and move down only if the code forces
+it.** A function that could be pure logic but got a `useEffect` wrapped
+around it for no reason is a sign to simplify the code, not to reach for
+`renderHook`.
+
 ## Running Tests
 
 ```bash
