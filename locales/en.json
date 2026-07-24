@@ -1,6 +1,14 @@
 {
   "app.name": "Tauri Template",
 
+  "mainWindow.placeholder": "KEstudio",
+  "mainWindow.lastEntry": "Last entry: {{entry}}",
+
+  "sidebar.websupport": "Websupport",
+  "sidebar.websupport.domains": "Domény",
+  "sidebar.websupport.email": "Email",
+  "sidebar.websupport.dns": "DNS",
+
   "menu.about": "About {{appName}}",
   "menu.checkForUpdates": "Check for Updates...",
   "menu.preferences": "Preferences...",
