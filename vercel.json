@@ -5,5 +5,10 @@
   "installCommand": "pnpm install",
   "outputDirectory": "dist",
   "framework": "vite",
-  "rewrites": [{ "source": "/((?!quick-pane\\.html$|assets/).*)", "destination": "/index.html" }]
+  "rewrites": [
+    {
+      "source": "/((?!quick-pane\\.html$|assets/).*)",
+      "destination": "/index.html"
+    }
+  ]
 }

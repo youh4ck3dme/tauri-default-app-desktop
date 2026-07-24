@@ -1,8 +1,8 @@
 name: Deploy to Vercel
 
+# Manual trigger only: requires VERCEL_TOKEN, VERCEL_ORG_ID, and
+# VERCEL_PROJECT_ID repo secrets to be configured before running.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
