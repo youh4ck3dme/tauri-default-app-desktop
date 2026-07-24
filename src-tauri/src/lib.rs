@@ -8,6 +8,7 @@ mod bindings;
 mod commands;
 mod types;
 mod utils;
+mod websupport_auth;
 
 use tauri::{Manager, RunEvent, WindowEvent};
 

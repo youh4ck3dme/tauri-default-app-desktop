@@ -8,3 +8,5 @@ pub mod preferences;
 pub mod quick_pane;
 pub mod recovery;
 pub mod secrets;
+pub mod websupport_dns;
+pub mod websupport_v1;

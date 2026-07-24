@@ -1,7 +1,9 @@
 use tauri_specta::{collect_commands, Builder};
 
 pub fn generate_bindings() -> Builder<tauri::Wry> {
-    use crate::commands::{notifications, preferences, quick_pane, recovery, secrets};
+    use crate::commands::{
+        notifications, preferences, quick_pane, recovery, secrets, websupport_dns, websupport_v1,
+    };
 
     Builder::<tauri::Wry>::new().commands(collect_commands![
         preferences::greet,
@@ -19,6 +21,18 @@ pub fn generate_bindings() -> Builder<tauri::Wry> {
         secrets::save_secret,
         secrets::get_secret,
         secrets::delete_secret,
+        websupport_dns::websupport_test_connection,
+        websupport_dns::websupport_get_dns_zone,
+        websupport_dns::websupport_list_dns_records,
+        websupport_dns::websupport_create_dns_record,
+        websupport_dns::websupport_update_dns_record,
+        websupport_dns::websupport_delete_dns_record,
+        websupport_v1::websupport_list_hostings,
+        websupport_v1::websupport_list_domains,
+        websupport_v1::websupport_list_mailboxes,
+        websupport_v1::websupport_create_mailbox,
+        websupport_v1::websupport_update_mailbox,
+        websupport_v1::websupport_delete_mailbox,
     ])
 }
 

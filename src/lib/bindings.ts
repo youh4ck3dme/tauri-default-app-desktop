@@ -183,6 +183,149 @@ async deleteSecret(key: string) : Promise<Result<null, string>> {
     if(e instanceof Error) throw e;
     else return { status: "error", error: e  as any };
 }
+},
+/**
+ * Tests Websupport API credentials via `GET /v2/check`.
+ * 
+ * Returns `true` when the API reports `{ "verified": true }`.
+ */
+async websupportTestConnection() : Promise<Result<boolean, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("websupport_test_connection") };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Fetches DNS zone metadata for `domain` via `GET /v2/service/{domain}/dns/zone`.
+ */
+async websupportGetDnsZone(domain: string) : Promise<Result<DnsZone, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("websupport_get_dns_zone", { domain }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Lists all DNS records for `domain`, paging through the collection.
+ */
+async websupportListDnsRecords(domain: string) : Promise<Result<DnsRecord[], string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("websupport_list_dns_records", { domain }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Creates a DNS record via `POST /v2/service/{domain}/dns/record` (204 on success).
+ */
+async websupportCreateDnsRecord(domain: string, record: CreateDnsRecordInput) : Promise<Result<null, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("websupport_create_dns_record", { domain, record }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Updates a DNS record via `PUT /v2/service/{domain}/dns/record/{recordId}` (204 on success).
+ */
+async websupportUpdateDnsRecord(domain: string, recordId: string, record: CreateDnsRecordInput) : Promise<Result<null, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("websupport_update_dns_record", { domain, recordId, record }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Deletes a DNS record via `DELETE /v2/service/{domain}/dns/record/{recordId}` (204 on success).
+ */
+async websupportDeleteDnsRecord(domain: string, recordId: string) : Promise<Result<null, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("websupport_delete_dns_record", { domain, recordId }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Lists hostings for the authenticated user (`GET /v1/user/{id}/hosting`).
+ */
+async websupportListHostings() : Promise<Result<Hosting[], string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("websupport_list_hostings") };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Lists domains (vhosts) under a hosting
+ * (`GET /v1/user/{id}/hosting/{hostingId}/vhost`).
+ */
+async websupportListDomains(hostingId: string) : Promise<Result<VHost[], string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("websupport_list_domains", { hostingId }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Lists mailboxes under a hosting
+ * (`GET /v1/user/{id}/hosting/{hostingId}/mailbox`).
+ */
+async websupportListMailboxes(hostingId: string) : Promise<Result<Mailbox[], string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("websupport_list_mailboxes", { hostingId }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Creates a mailbox
+ * (`POST /v1/user/{id}/hosting/{hostingId}/domain/{domainId}/mailbox`).
+ * 
+ * Password is never written to logs.
+ */
+async websupportCreateMailbox(hostingId: string, domainId: string, input: CreateMailboxInput) : Promise<Result<null, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("websupport_create_mailbox", { hostingId, domainId, input }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Updates a mailbox via POST (not PUT)
+ * (`POST /v1/user/{id}/hosting/{hostingId}/domain/{domainId}/mailbox/{mailboxId}`).
+ * 
+ * Password is never written to logs.
+ */
+async websupportUpdateMailbox(hostingId: string, domainId: string, mailboxId: string, input: UpdateMailboxInput) : Promise<Result<null, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("websupport_update_mailbox", { hostingId, domainId, mailboxId, input }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Deletes a mailbox
+ * (`DELETE /v1/user/{id}/hosting/{hostingId}/domain/{domainId}/mailbox/{mailboxId}`).
+ */
+async websupportDeleteMailbox(hostingId: string, domainId: string, mailboxId: string) : Promise<Result<null, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("websupport_delete_mailbox", { hostingId, domainId, mailboxId }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
 }
 }
 
@@ -211,7 +354,54 @@ quick_pane_shortcut: string | null;
  * If None, uses system locale detection
  */
 language: string | null }
+/**
+ * Input for creating or updating a DNS record.
+ */
+export type CreateDnsRecordInput = { 
+/**
+ * Record type: A, AAAA, ANAME, CAA, CNAME, DNSSEC, MX, NS, SRV, TXT, CERT, LOC, SSHFP, TLSA, DS.
+ */
+type: string; name: string; content?: string | null; ttl: number; priority?: number | null; port?: number | null; weight?: number | null }
+/**
+ * Input for creating a mailbox. Password is never logged.
+ * 
+ * `Debug` is implemented by hand to redact `password` — this is the
+ * safety net for any future `{:?}` of the whole struct (panic messages,
+ * a stray debug log, etc.), on top of the explicit field-level logging
+ * already used in `websupport_create_mailbox`.
+ */
+export type CreateMailboxInput = { email: string; password: string; ipCheck?: boolean | null; ips?: string[] | null; countryCheck?: boolean | null; countries?: string[] | null; imapDisabled?: boolean | null; pop3Disabled?: boolean | null; note?: string | null }
+/**
+ * A DNS record returned by the Websupport API.
+ * 
+ * Numeric fields use `i32` (fits DNS TTL/priority/port/weight and TS `number`).
+ */
+export type DnsRecord = { 
+/**
+ * Record id (null for some synthetic entries).
+ */
+id: number | null; name: string; content: string; ttl: number; priority: number | null; port: number | null; weight: number | null; 
+/**
+ * Record type: A, AAAA, ANAME, CAA, CNAME, DNSSEC, MX, NS, SRV, TXT, …
+ */
+type: string }
+/**
+ * DNS zone metadata for a domain.
+ */
+export type DnsZone = { name: string; lastCheck: string | null; dnssecSigning: string | null }
+/**
+ * A hosting product under the authenticated user.
+ */
+export type Hosting = { id: number; name: string; uuid?: string | null }
 export type JsonValue = null | boolean | number | string | JsonValue[] | Partial<{ [key in string]: JsonValue }>
+/**
+ * A mailbox under a hosting.
+ */
+export type Mailbox = { id: number; 
+/**
+ * Full email address or local part (API-dependent).
+ */
+email?: string | null; domain?: string | null; note?: string | null; ipCheck?: boolean | null; countryCheck?: boolean | null; imapDisabled?: boolean | null; pop3Disabled?: boolean | null }
 /**
  * Error types for recovery operations (typed for frontend matching)
  */
@@ -236,6 +426,21 @@ export type RecoveryError =
  * JSON serialization/deserialization error
  */
 { type: "ParseError"; message: string }
+/**
+ * Input for updating a mailbox (POST, not PUT). Password is never logged.
+ * 
+ * `Debug` is implemented by hand to redact `password` (see
+ * `CreateMailboxInput`'s impl for the rationale).
+ */
+export type UpdateMailboxInput = { password?: string | null; ipCheck?: boolean | null; ips?: string[] | null; countryCheck?: boolean | null; countries?: string[] | null; imapDisabled?: boolean | null; pop3Disabled?: boolean | null; note?: string | null }
+/**
+ * A virtual host (domain) under a hosting.
+ */
+export type VHost = { id: number; 
+/**
+ * Domain name (API may expose as `name` or `domain`).
+ */
+name: string }
 
 /** tauri-specta globals **/
 

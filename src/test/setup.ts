@@ -1,28 +1,33 @@
 import '@testing-library/jest-dom'
 import { vi } from 'vitest'
 
+// Mock matchMedia for tests
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation(query => ({
     matches: false,
     media: query,
     onchange: null,
-    addListener: vi.fn(),
-    removeListener: vi.fn(),
+    addListener: vi.fn(), // deprecated
+    removeListener: vi.fn(), // deprecated
     addEventListener: vi.fn(),
     removeEventListener: vi.fn(),
     dispatchEvent: vi.fn(),
   })),
 })
 
+// Mock Tauri APIs for tests
 vi.mock('@tauri-apps/api/event', () => ({
-  listen: vi.fn().mockResolvedValue(() => {}),
+  listen: vi.fn().mockResolvedValue(() => {
+    // Mock unlisten function
+  }),
 }))
 
 vi.mock('@tauri-apps/plugin-updater', () => ({
   check: vi.fn().mockResolvedValue(null),
 }))
 
+// Mock typed Tauri bindings (tauri-specta generated)
 vi.mock('@/lib/tauri-bindings', () => ({
   commands: {
     greet: vi.fn().mockResolvedValue('Hello, test!'),
@@ -44,6 +49,43 @@ vi.mock('@/lib/tauri-bindings', () => ({
     getSecret: vi.fn().mockResolvedValue({ status: 'ok', data: null }),
     saveSecret: vi.fn().mockResolvedValue({ status: 'ok', data: null }),
     deleteSecret: vi.fn().mockResolvedValue({ status: 'ok', data: null }),
+    websupportTestConnection: vi
+      .fn()
+      .mockResolvedValue({ status: 'ok', data: true }),
+    websupportGetDnsZone: vi.fn().mockResolvedValue({
+      status: 'ok',
+      data: { name: 'example.com', lastCheck: null, dnssecSigning: null },
+    }),
+    websupportListDnsRecords: vi
+      .fn()
+      .mockResolvedValue({ status: 'ok', data: [] }),
+    websupportCreateDnsRecord: vi
+      .fn()
+      .mockResolvedValue({ status: 'ok', data: null }),
+    websupportUpdateDnsRecord: vi
+      .fn()
+      .mockResolvedValue({ status: 'ok', data: null }),
+    websupportDeleteDnsRecord: vi
+      .fn()
+      .mockResolvedValue({ status: 'ok', data: null }),
+    websupportListHostings: vi
+      .fn()
+      .mockResolvedValue({ status: 'ok', data: [] }),
+    websupportListDomains: vi
+      .fn()
+      .mockResolvedValue({ status: 'ok', data: [] }),
+    websupportListMailboxes: vi
+      .fn()
+      .mockResolvedValue({ status: 'ok', data: [] }),
+    websupportCreateMailbox: vi
+      .fn()
+      .mockResolvedValue({ status: 'ok', data: null }),
+    websupportUpdateMailbox: vi
+      .fn()
+      .mockResolvedValue({ status: 'ok', data: null }),
+    websupportDeleteMailbox: vi
+      .fn()
+      .mockResolvedValue({ status: 'ok', data: null }),
   },
   unwrapResult: vi.fn((result: { status: string; data?: unknown }) => {
     if (result.status === 'ok') return result.data
