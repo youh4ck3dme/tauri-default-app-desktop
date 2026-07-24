@@ -326,6 +326,34 @@ async websupportDeleteMailbox(hostingId: string, domainId: string, mailboxId: st
     if(e instanceof Error) throw e;
     else return { status: "error", error: e  as any };
 }
+},
+/**
+ * Sends the conversation to Mistral with Websupport tools.
+ * 
+ * Mutating tool calls are returned as [`PendingAction`]s — they are never
+ * executed in this command.
+ */
+async mistralSendMessage(conversation: ChatMessage[]) : Promise<Result<MistralTurnResult, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("mistral_send_message", { conversation }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Executes a previously returned pending mutating action after user confirmation.
+ * 
+ * Rejects tool names that are not in the mutating set (including read-only
+ * and unknown names).
+ */
+async mistralConfirmAction(action: PendingAction) : Promise<Result<string, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("mistral_confirm_action", { action }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
 }
 }
 
@@ -354,6 +382,10 @@ quick_pane_shortcut: string | null;
  * If None, uses system locale detection
  */
 language: string | null }
+/**
+ * A single chat message exchanged with the UI / model.
+ */
+export type ChatMessage = { role: string; content: string }
 /**
  * Input for creating or updating a DNS record.
  */
@@ -402,6 +434,26 @@ export type Mailbox = { id: number;
  * Full email address or local part (API-dependent).
  */
 email?: string | null; domain?: string | null; note?: string | null; ipCheck?: boolean | null; countryCheck?: boolean | null; imapDisabled?: boolean | null; pop3Disabled?: boolean | null }
+/**
+ * Result of one user→assistant turn (possibly with pending mutations).
+ */
+export type MistralTurnResult = { reply: string; pending_actions: PendingAction[] }
+/**
+ * A mutating tool call waiting for explicit user confirmation.
+ */
+export type PendingAction = { 
+/**
+ * Stable id (uuid v4) for this pending action.
+ */
+id: string; tool_name: string; 
+/**
+ * Human-readable summary (never includes passwords).
+ */
+description: string; 
+/**
+ * Original tool arguments as JSON.
+ */
+args: JsonValue }
 /**
  * Error types for recovery operations (typed for frontend matching)
  */

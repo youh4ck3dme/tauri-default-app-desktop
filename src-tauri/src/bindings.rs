@@ -2,7 +2,8 @@ use tauri_specta::{collect_commands, Builder};
 
 pub fn generate_bindings() -> Builder<tauri::Wry> {
     use crate::commands::{
-        notifications, preferences, quick_pane, recovery, secrets, websupport_dns, websupport_v1,
+        mistral, notifications, preferences, quick_pane, recovery, secrets, websupport_dns,
+        websupport_v1,
     };
 
     Builder::<tauri::Wry>::new().commands(collect_commands![
@@ -33,6 +34,8 @@ pub fn generate_bindings() -> Builder<tauri::Wry> {
         websupport_v1::websupport_create_mailbox,
         websupport_v1::websupport_update_mailbox,
         websupport_v1::websupport_delete_mailbox,
+        mistral::mistral_send_message,
+        mistral::mistral_confirm_action,
     ])
 }
 
@@ -52,6 +55,9 @@ pub fn export_ts_bindings() {
 mod tests {
     use super::*;
 
+    /// Generate TypeScript bindings file.
+    /// This test is ignored by default so it doesn't run in CI.
+    /// Run manually with: cargo test export_bindings -- --ignored
     #[test]
     #[ignore]
     fn export_bindings() {

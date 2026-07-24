@@ -86,6 +86,13 @@ vi.mock('@/lib/tauri-bindings', () => ({
     websupportDeleteMailbox: vi
       .fn()
       .mockResolvedValue({ status: 'ok', data: null }),
+    mistralSendMessage: vi.fn().mockResolvedValue({
+      status: 'ok',
+      data: { reply: '', pending_actions: [] },
+    }),
+    mistralConfirmAction: vi
+      .fn()
+      .mockResolvedValue({ status: 'ok', data: 'ok' }),
   },
   unwrapResult: vi.fn((result: { status: string; data?: unknown }) => {
     if (result.status === 'ok') return result.data
