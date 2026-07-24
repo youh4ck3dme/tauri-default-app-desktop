@@ -1,7 +1,7 @@
 use tauri_specta::{collect_commands, Builder};
 
 pub fn generate_bindings() -> Builder<tauri::Wry> {
-    use crate::commands::{notifications, preferences, quick_pane, recovery};
+    use crate::commands::{notifications, preferences, quick_pane, recovery, secrets};
 
     Builder::<tauri::Wry>::new().commands(collect_commands![
         preferences::greet,
@@ -16,6 +16,9 @@ pub fn generate_bindings() -> Builder<tauri::Wry> {
         quick_pane::toggle_quick_pane,
         quick_pane::get_default_quick_pane_shortcut,
         quick_pane::update_quick_pane_shortcut,
+        secrets::save_secret,
+        secrets::get_secret,
+        secrets::delete_secret,
     ])
 }
 
@@ -35,9 +38,6 @@ pub fn export_ts_bindings() {
 mod tests {
     use super::*;
 
-    /// Generate TypeScript bindings file.
-    /// This test is ignored by default so it doesn't run in CI.
-    /// Run manually with: cargo test export_bindings -- --ignored
     #[test]
     #[ignore]
     fn export_bindings() {

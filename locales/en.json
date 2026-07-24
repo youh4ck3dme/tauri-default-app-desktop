@@ -1,14 +1,11 @@
 {
   "app.name": "Tauri Template",
-
   "mainWindow.placeholder": "KEstudio",
   "mainWindow.lastEntry": "Last entry: {{entry}}",
-
   "sidebar.websupport": "Websupport",
   "sidebar.websupport.domains": "Domény",
   "sidebar.websupport.email": "Email",
   "sidebar.websupport.dns": "DNS",
-
   "menu.about": "About {{appName}}",
   "menu.checkForUpdates": "Check for Updates...",
   "menu.preferences": "Preferences...",
@@ -19,13 +16,12 @@
   "menu.view": "View",
   "menu.toggleLeftSidebar": "Toggle Left Sidebar",
   "menu.toggleRightSidebar": "Toggle Right Sidebar",
-
   "preferences.title": "Preferences",
   "preferences.description": "Customize your application preferences here.",
   "preferences.general": "General",
   "preferences.appearance": "Appearance",
   "preferences.advanced": "Advanced",
-
+  "preferences.integrations": "Integrations",
   "preferences.general.keyboardShortcuts": "Keyboard Shortcuts",
   "preferences.general.quickPaneShortcut": "Quick Pane Shortcut",
   "preferences.general.quickPaneShortcutDescription": "Global keyboard shortcut to toggle the quick pane from any application",
@@ -35,7 +31,6 @@
   "preferences.general.exampleTextPlaceholder": "Enter example text",
   "preferences.general.exampleToggle": "Example Toggle Setting",
   "preferences.general.exampleToggleDescription": "This is an example switch/toggle setting (not persisted)",
-
   "preferences.appearance.theme": "Theme",
   "preferences.appearance.colorTheme": "Color Theme",
   "preferences.appearance.colorThemeDescription": "Choose your preferred color theme",
@@ -46,7 +41,6 @@
   "preferences.appearance.language": "Language",
   "preferences.appearance.languageDescription": "Choose your preferred display language",
   "preferences.appearance.language.system": "System Default",
-
   "preferences.advanced.title": "Example Advanced Settings",
   "preferences.advanced.toggle": "Example Advanced Toggle",
   "preferences.advanced.toggleDescription": "This is an example advanced toggle setting (not persisted)",
@@ -55,18 +49,33 @@
   "preferences.advanced.option1": "Example Option 1",
   "preferences.advanced.option2": "Example Option 2",
   "preferences.advanced.option3": "Example Option 3",
-
+  "preferences.integrations.websupport": "Websupport",
+  "preferences.integrations.websupportDescription": "API credentials for Websupport services. Stored securely in the OS keychain.",
+  "preferences.integrations.websupportIdentifier": "Websupport Identifier",
+  "preferences.integrations.websupportIdentifierDescription": "Your Websupport API identifier",
+  "preferences.integrations.websupportSecret": "Websupport Secret Key",
+  "preferences.integrations.websupportSecretDescription": "Your Websupport API secret key",
+  "preferences.integrations.websupportDyndns": "Websupport DynDNS",
+  "preferences.integrations.websupportDyndnsIdentifier": "Websupport DynDNS Identifier",
+  "preferences.integrations.websupportDyndnsIdentifierDescription": "Your Websupport DynDNS API identifier",
+  "preferences.integrations.websupportDyndnsSecret": "Websupport DynDNS Secret Key",
+  "preferences.integrations.websupportDyndnsSecretDescription": "Your Websupport DynDNS API secret key",
+  "preferences.integrations.mistral": "Mistral AI",
+  "preferences.integrations.mistralDescription": "API key for Mistral AI. Stored securely in the OS keychain.",
+  "preferences.integrations.mistralApiKey": "Mistral API Key",
+  "preferences.integrations.mistralApiKeyDescription": "Your Mistral AI API key",
+  "preferences.integrations.placeholder": "Enter secret…",
+  "preferences.integrations.showSecret": "Show secret",
+  "preferences.integrations.hideSecret": "Hide secret",
   "common.enabled": "Enabled",
   "common.disabled": "Disabled",
   "common.reset": "Reset",
-
   "commands.group.navigation": "Navigation",
   "commands.group.settings": "Settings",
   "commands.group.window": "Window",
   "commands.group.notification": "Notifications",
   "commands.group.debug": "Debug",
   "commands.group.other": "Other",
-
   "commands.showLeftSidebar.label": "Show Left Sidebar",
   "commands.showLeftSidebar.description": "Show the left sidebar",
   "commands.hideLeftSidebar.label": "Hide Left Sidebar",
@@ -77,7 +86,6 @@
   "commands.hideRightSidebar.description": "Hide the right sidebar",
   "commands.openPreferences.label": "Open Preferences",
   "commands.openPreferences.description": "Open the application preferences",
-
   "commands.windowClose.label": "Close Window",
   "commands.windowClose.description": "Close the current window",
   "commands.windowMinimize.label": "Minimize Window",
@@ -88,25 +96,23 @@
   "commands.windowFullscreen.description": "Enter fullscreen mode",
   "commands.windowExitFullscreen.label": "Exit Fullscreen",
   "commands.windowExitFullscreen.description": "Exit fullscreen mode",
-
   "commands.testToast.label": "Test Toast Notification",
   "commands.testToast.description": "Show a test toast notification",
-
   "commandPalette.title": "Command Palette",
   "commandPalette.placeholder": "Type a command or search...",
   "commandPalette.noResults": "No results found.",
-
   "titlebar.default": "Tauri App",
   "titlebar.showLeftSidebar": "Show Left Sidebar",
   "titlebar.hideLeftSidebar": "Hide Left Sidebar",
   "titlebar.showRightSidebar": "Show Right Sidebar",
   "titlebar.hideRightSidebar": "Hide Right Sidebar",
   "titlebar.settings": "Settings",
-
   "toast.success.preferencesSaved": "Preferences saved",
+  "toast.success.secretSaved": "Secret saved",
   "toast.success.testToast": "Test Toast",
   "toast.success.testToastDescription": "This is a test notification",
   "toast.error.generic": "Something went wrong",
+  "toast.error.secretSaveFailed": "Failed to save secret",
   "toast.error.shortcutFailed": "Failed to register shortcut",
   "toast.error.shortcutRestoreFailed": "Failed to restore previous shortcut",
   "toast.error.shortcutRestoreDescription": "The shortcut may be out of sync. Please restart the app or try again.",

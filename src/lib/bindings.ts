@@ -142,6 +142,47 @@ async updateQuickPaneShortcut(shortcut: string | null) : Promise<Result<null, st
     if(e instanceof Error) throw e;
     else return { status: "error", error: e  as any };
 }
+},
+/**
+ * Saves a secret value to the OS keychain.
+ * 
+ * The `key` must be one of the allowed secret identifiers.
+ */
+async saveSecret(key: string, value: string) : Promise<Result<null, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("save_secret", { key, value }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Loads a secret from the OS keychain.
+ * 
+ * Returns `Ok(None)` when the secret has not been set.
+ * The `key` must be one of the allowed secret identifiers.
+ */
+async getSecret(key: string) : Promise<Result<string | null, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("get_secret", { key }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+/**
+ * Deletes a secret from the OS keychain.
+ * 
+ * Missing entries are treated as success (idempotent delete).
+ * The `key` must be one of the allowed secret identifiers.
+ */
+async deleteSecret(key: string) : Promise<Result<null, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("delete_secret", { key }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
 }
 }
 
