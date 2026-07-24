@@ -1,3 +1,16 @@
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:6366F1,100:22D3EE&height=180&section=header&text=Tauri%20Starter&fontSize=52&fontColor=ffffff&animation=fadeIn&fontAlignY=40&desc=Production-ready%20Tauri%20v2%20%2B%20React%20%2B%20TypeScript%20desktop%20app&descAlignY=62&descSize=17&descColor=ffffff" alt="Tauri Starter banner" width="100%" />
+</p>
+
+<p align="center">
+  <a href="https://github.com/youh4ck3dme/tauri-default-app-desktop/actions/workflows/ci.yml"><img src="https://github.com/youh4ck3dme/tauri-default-app-desktop/actions/workflows/ci.yml/badge.svg" alt="CI status" /></a>
+  <img src="https://img.shields.io/badge/Tauri-v2-24C8DB?logo=tauri&logoColor=white" alt="Tauri v2" />
+  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white" alt="React 19" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Rust-stable-000000?logo=rust&logoColor=white" alt="Rust" />
+  <a href="./LICENSE.md"><img src="https://img.shields.io/github/license/youh4ck3dme/tauri-default-app-desktop" alt="License" /></a>
+</p>
+
 # Tauri Starter
 
 Production-ready desktop application built with **Tauri v2**, **React**, and **TypeScript** — based on [dannysmith/tauri-template](https://github.com/dannysmith/tauri-template) best practices. Optimized for Windows development with opinionated patterns for maintainable desktop apps.
